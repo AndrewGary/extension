@@ -51,6 +51,8 @@ ssButton.addEventListener('click', async () => {
         x2 = e.clientX;
         y2 = e.clientY;
 
+        const body = document.body;
+
         console.log('(' + x1 + ', ' + y1 + ')');
         console.log('(' + x2 + ', ' + y2 + ')');
 
@@ -58,17 +60,26 @@ ssButton.addEventListener('click', async () => {
         img.src = screenShot;
 
         // Create a canvas element
+        // body.insertAdjacentHTML('afterbegin', '<canvas id="canvas" height="500" width="500" style="background-color:black;position:absolute;z-index:20" />')
         var canvas = document.createElement('canvas');
         var ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        // canvas.setAttribute('style', 'background-color:black;position:absolute;z-index:20')
+        
+
+        body.insertAdjacentElement('afterbegin', canvas);
 
         // Draw the specific section of the image to the canvas
-        img.onload = function () {
-          console.log('image loaded');
-          ctx.drawImage(img, 0, 0);
-        };
+        // img.onload = function () {
+        //   console.log('image loaded');
+        //   ctx.drawImage(img, 0, 0);
+
+          // console.log(canvas);
+        // };
       });
 
-      body.insertAdjacentElement('afterbegin', canvas);
+      // body.insertAdjacentElement('afterbegin', canvas);
     },
   });
 });
