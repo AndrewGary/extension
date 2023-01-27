@@ -51,6 +51,11 @@ ssButton.addEventListener('click', async () => {
         x2 = e.clientX;
         y2 = e.clientY;
 
+        console.log('x1: ', x1);
+        console.log('y1: ', y1);
+        console.log('x2: ', x2);
+        console.log('y2: ', y2);
+
         const body = document.body;
 
         console.log('(' + x1 + ', ' + y1 + ')');
@@ -65,18 +70,30 @@ ssButton.addEventListener('click', async () => {
         var ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        canvas.setAttribute('style', 'background-color:black;');
         // canvas.setAttribute('style', 'background-color:black;position:absolute;z-index:20')
-        
 
         body.insertAdjacentElement('afterbegin', canvas);
 
         // Draw the specific section of the image to the canvas
-        // img.onload = function () {
-        //   console.log('image loaded');
-        //   ctx.drawImage(img, 0, 0);
+        img.onload = function () {
+          console.log('image loaded');
+          console.log('x1: ', x1);
+          console.log('y1: ', y1);
+          console.log('x2: ', x2);
+          console.log('y2: ', y2);
+          // ctx.drawImage(img, 10, 10, x2 - x1, y2 - y1, 0, 0, x2 - x1, y2 - y1);
+          // ctx.drawImage(img, 250, 0, 200, 100, 0, 0, 200, 100);
+          console.log(
+            `ctx.drawImage(img, ${x1}, ${y1}, ${x2 - x1}, ${y2 - y1}, 0, 0}})`
+          );
+          // ctx.drawImage(img, x1, y1, x2 - x1, y2 - y1)
+          // ctx.drawImage(img, x1, y1, x2 - x1, y2 - y1, 10, 10);
+          ctx.drawImage(img, x1, y1, x2 - x1, y2 - y1, 0, 0, x2 - x1, y2 - y1);
+          // ctx.drawImage(img, 0, 0, 100, 100, 0, 0, 100, 100);
 
           // console.log(canvas);
-        // };
+        };
       });
 
       // body.insertAdjacentElement('afterbegin', canvas);
