@@ -25,6 +25,9 @@ ssButton.addEventListener('click', async () => {
       // console.log('ss: ', ss);
 
       const yeahhhh = await chrome.storage.local.get('screenShot');
+      const screenShot = yeahhhh.screenShot;
+
+      console.log(screenShot);
 
       // console.log('yeahhhh: ', yeahhhh.screenShot);
 
@@ -51,13 +54,21 @@ ssButton.addEventListener('click', async () => {
         console.log('(' + x1 + ', ' + y1 + ')');
         console.log('(' + x2 + ', ' + y2 + ')');
 
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        canvas.width = width;
-        canvas.height = height;
+        var img = new Image();
+        img.src = screenShot;
+
+        // Create a canvas element
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
+
+        // Draw the specific section of the image to the canvas
+        img.onload = function () {
+          console.log('image loaded');
+          ctx.drawImage(img, 0, 0);
+        };
       });
 
-      // canvas.width =
+      body.insertAdjacentElement('afterbegin', canvas);
     },
   });
 });
